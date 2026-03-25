@@ -1,9 +1,10 @@
-
 let balance = 1250;
 
 let history = [
 {date:new Date().toLocaleDateString(),type:"Saldo inicial",amount:1250}
 ];
+
+let chartInstance = null;
 
 function login(){
 
@@ -50,6 +51,12 @@ showCancelButton:true
 
 if(!res.value)return;
 
+let error = validateAmount(res.value);
+if(error){
+Swal.fire("Error", error, "error");
+return;
+}
+
 let val=parseFloat(res.value);
 
 Swal.fire({
@@ -87,6 +94,12 @@ showCancelButton:true
 }).then(res=>{
 
 if(!res.value)return;
+
+let error = validateAmount(res.value);
+if(error){
+Swal.fire("Error", error, "error");
+return;
+}
 
 let val=parseFloat(res.value);
 
@@ -199,5 +212,107 @@ document.getElementById("historyTable").innerHTML=html;
 function showHistory(){
 
 document.getElementById("historyTable").scrollIntoView({behavior:"smooth"});
+
+}
+
+function validateAmount(value){
+
+let constraints = {
+amount: {
+numericality: {
+greaterThan: 0
+}
+}
+};
+
+let result = validate({amount:value}, constraints);
+return result ? result.amount[0] : null;
+
+}
+
+function generatePDF(){
+
+const { jsPDF } = window.jspdf;
+const doc = new jsPDF();
+
+doc.text("Pokémon Bank - Estado de Cuenta", 10, 10);
+
+let y = 20;
+
+history.forEach(h=>{
+doc.text(`${h.date} - ${h.type} - $${h.amount}`, 10, y);
+y+=10;
+});
+
+doc.save("historial.pdf");
+
+}
+
+function generateBalancePDF(){
+
+const { jsPDF } = window.jspdf;
+const doc = new jsPDF();
+
+doc.text("Saldo actual:", 10, 10);
+doc.text("$" + balance.toFixed(2), 10, 20);
+
+doc.save("saldo.pdf");
+
+}
+
+function showChart(){
+
+let deposits = 0;
+let withdrawals = 0;
+
+history.forEach(h=>{
+if(h.type.includes("Depósito")) deposits += h.amount;
+if(h.type.includes("Retiro")) withdrawals += h.amount;
+});
+
+const ctx = document.getElementById('chartCanvas');
+
+if(chartInstance){
+chartInstance.destroy();
+}
+
+chartInstance = new Chart(ctx, {
+type: 'bar',
+data: {
+labels: ['Depósitos', 'Retiros'],
+datasets: [{
+label: 'Movimientos',
+data: [deposits, withdrawals]
+}]
+}
+});
+
+}
+
+function showPieChart(){
+
+let luz=0, agua=0, internet=0;
+
+history.forEach(h=>{
+if(h.type.includes("luz")) luz+=h.amount;
+if(h.type.includes("agua")) agua+=h.amount;
+if(h.type.includes("internet")) internet+=h.amount;
+});
+
+const ctx = document.getElementById('chartCanvas');
+
+if(chartInstance){
+chartInstance.destroy();
+}
+
+chartInstance = new Chart(ctx, {
+type: 'pie',
+data: {
+labels: ['Luz', 'Agua', 'Internet'],
+datasets: [{
+data: [luz, agua, internet]
+}]
+}
+});
 
 }

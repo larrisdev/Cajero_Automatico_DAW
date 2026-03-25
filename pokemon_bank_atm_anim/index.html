@@ -53,11 +53,33 @@
     
     <div class="row text-center">
     
-
+    <div class="col-md-3 col-6 mb-3">
+    <button class="atm-btn" onclick="deposit()">💰<br>Depositar</button>
+    </div>
     
+    <div class="col-md-3 col-6 mb-3">
+    <button class="atm-btn" onclick="withdraw()">💸<br>Retirar</button>
+    </div>
+    
+    <div class="col-md-3 col-6 mb-3">
+    <button class="atm-btn" onclick="payService()">💡<br>Pagar</button>
     </div>
     
 
+    
+    <div class="card atm-card p-3 mt-3">
+    <h5>Historial de transacciones</h5>
+    <table class="table">
+    <thead>
+    <tr>
+    <th>Fecha</th>
+    <th>Tipo</th>
+    <th>Monto</th>
+    </tr>
+    </thead>
+    <tbody id="historyTable"></tbody>
+    </table>
+    </div>
     
     </div>
     

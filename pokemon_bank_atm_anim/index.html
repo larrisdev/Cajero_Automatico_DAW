@@ -14,82 +14,86 @@
 
 <body>
 
-    <nav class="navbar navbar-dark">
-    <div class="container">
-    <span class="navbar-brand">Pokémon Bank 🏦</span>
-    </div>
-    </nav>
-    
-    <div class="container mt-5">
-    
-    <div id="loginView" class="card atm-card p-4 mx-auto text-center" style="max-width:400px;">
-    <h4>Acceso al Cajero</h4>
-    <p>Ingrese su PIN</p>
-    <input type="password" id="pinInput" class="form-control text-center mb-3" maxlength="4">
-    <button class="btn btn-primary btn-block" onclick="login()">Ingresar</button>
-    </div>
-    
-    <div id="atmView" class="d-none">
-    
-    <div class="row">
-    
-    <div class="col-md-4">
-    <div class="card atm-card p-3 text-center">
-    
-    <h5>Cuenta</h5>
-    <p><b>Cliente:</b> Ash Ketchum</p>
-    <p><b>Cuenta:</b> 0987-2026-PKM</p>
-    
-    <hr>
-    
-    <h3 id="balanceText">$0.00</h3>
-    
-    <button class="btn btn-danger btn-block mt-3" onclick="logout()">Cerrar sesión</button>
-    
-    </div>
-    </div>
-    
-    <div class="col-md-8">
-    
-    <div class="row text-center">
-    
-    <div class="col-md-3 col-6 mb-3">
-    <button class="atm-btn" onclick="deposit()">💰<br>Depositar</button>
-    </div>
-    
-    <div class="col-md-3 col-6 mb-3">
-    <button class="atm-btn" onclick="withdraw()">💸<br>Retirar</button>
-    </div>
-    
-    <div class="col-md-3 col-6 mb-3">
-    <button class="atm-btn" onclick="payService()">💡<br>Pagar</button>
-    </div>
-    
+<nav class="navbar navbar-dark">
+<div class="container">
+<span class="navbar-brand">Pokémon Bank 🏦</span>
+</div>
+</nav>
 
-    
-    <div class="card atm-card p-3 mt-3">
-    <h5>Historial de transacciones</h5>
-    <table class="table">
-    <thead>
-    <tr>
-    <th>Fecha</th>
-    <th>Tipo</th>
-    <th>Monto</th>
-    </tr>
-    </thead>
-    <tbody id="historyTable"></tbody>
-    </table>
-    </div>
-    
-    </div>
-    
-    </div>
-    
-    </div>
-    
-    </div>
-    
-    <script src="app.js"></script>
-    
-    </body>
+<div class="container mt-5">
+
+<div id="loginView" class="card atm-card p-4 mx-auto text-center" style="max-width:400px;">
+<h4>Acceso al Cajero</h4>
+<p>Ingrese su PIN</p>
+<input type="password" id="pinInput" class="form-control text-center mb-3" maxlength="4">
+<button class="btn btn-primary btn-block" onclick="login()">Ingresar</button>
+</div>
+
+<div id="atmView" class="d-none">
+
+<div class="row">
+
+<div class="col-md-4">
+<div class="card atm-card p-3 text-center">
+
+<h5>Cuenta</h5>
+<p><b>Cliente:</b> Ash Ketchum</p>
+<p><b>Cuenta:</b> 0987-2026-PKM</p>
+
+<hr>
+
+<h3 id="balanceText">$0.00</h3>
+
+<button class="btn btn-danger btn-block mt-3" onclick="logout()">Cerrar sesión</button>
+
+</div>
+</div>
+
+<div class="col-md-8">
+
+<div class="row text-center">
+
+<div class="col-md-3 col-6 mb-3">
+<button class="atm-btn" onclick="deposit()">💰<br>Depositar</button>
+</div>
+
+<div class="col-md-3 col-6 mb-3">
+<button class="atm-btn" onclick="withdraw()">💸<br>Retirar</button>
+</div>
+
+<div class="col-md-3 col-6 mb-3">
+<button class="atm-btn" onclick="payService()">💡<br>Pagar</button>
+</div>
+
+<div class="col-md-3 col-6 mb-3">
+<button class="atm-btn" onclick="showHistory()">📜<br>Historial</button>
+</div>
+
+</div>
+
+<div class="card atm-card p-3 mt-3">
+<h5>Historial de transacciones</h5>
+<table class="table">
+<thead>
+<tr>
+<th>Fecha</th>
+<th>Tipo</th>
+<th>Monto</th>
+</tr>
+</thead>
+<tbody id="historyTable"></tbody>
+</table>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script src="app.js"></script>
+
+</body>
 </html>

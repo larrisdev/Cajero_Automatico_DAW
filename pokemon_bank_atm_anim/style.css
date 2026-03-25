@@ -1,0 +1,14 @@
+body{
+background:#f4f7f6;
+font-family:Segoe UI;
+}
+
+.navbar{
+background:#ef5350;
+}
+
+.atm-card{
+border:none;
+border-radius:20px;
+box-shadow:0 10px 30px rgba(0,0,0,0.15);
+}
